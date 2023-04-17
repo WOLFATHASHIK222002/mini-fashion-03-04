@@ -1,33 +1,33 @@
-import I1 from "../img/i1.png";
-import F1 from "../img/f1.png";
-import C3 from "../img/c3.png";
-import Fi1 from "../img/fi1.png";
+import I1 from "../img/img1.jpg";
+import F1 from "../img/img2.jpg";
+import C3 from "../img/img3.jpg";
+import Fi1 from "../img/img4.jpg";
 
 export const heroData = [
   {
     id: 1,
-    name: "Icecream",
+    name: "Checked shirt",
     decp: "Chocolate & vanilla",
     price: "5.25",
     imageSrc: I1,
   },
   {
     id: 2,
-    name: "Strawberries",
+    name: "plane shirt",
     decp: "Fresh Strawberries",
     price: "10.25",
     imageSrc: F1,
   },
   {
     id: 3,
-    name: "Chicken Kebab",
+    name: "checked shirt",
     decp: "Mixed Kebab Plate",
     price: "8.25",
     imageSrc: C3,
   },
   {
     id: 4,
-    name: "Fish Kebab",
+    name: "design shirt",
     decp: "Mixed Fish Kebab",
     price: "5.25",
     imageSrc: Fi1,
@@ -37,38 +37,38 @@ export const heroData = [
 export const categories = [
   {
     id: 1,
-    name: "Chicken",
-    urlParamName: "chicken",
+    name: "Plane shirt",
+    urlParamName: "Plane shirt",
   },
   {
     id: 2,
-    name: "Curry",
-    urlParamName: "curry",
+    name: "Checked shirt",
+    urlParamName: "Checked shirt",
   },
   {
     id: 3,
-    name: "Rice",
-    urlParamName: "rice",
+    name: "Design shirt",
+    urlParamName: "Design shirt",
   },
   {
     id: 4,
-    name: "Fish",
-    urlParamName: "fish",
+    name: "T-shirt",
+    urlParamName: "T-shirt",
   },
   {
     id: 5,
-    name: "Fruits",
-    urlParamName: "fruits",
+    name: "Pants",
+    urlParamName: "Pants",
   },
   {
     id: 6,
-    name: "Icecreams",
-    urlParamName: "icecreams",
+    name: "Shoes",
+    urlParamName: "Shoes",
   },
 
   {
     id: 7,
-    name: "Soft Drinks",
-    urlParamName: "drinks",
+    name: "Watches",
+    urlParamName: "Watches",
   },
 ];

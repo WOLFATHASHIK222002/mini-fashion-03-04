@@ -55,7 +55,7 @@ const CartItem = ({ item, setFlag, flag }) => {
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
       <img
         src={item?.imageURL}
-        className="w-20 h-20 max-w-[60px] rounded-full object-contain"
+        className="w-20 h-20 mb-12 max-w-[60px] rounded-full object-contain"
         alt=""
       />
 
@@ -63,7 +63,7 @@ const CartItem = ({ item, setFlag, flag }) => {
       <div className="flex flex-col gap-2">
         <p className="text-base text-gray-50">{item?.title}</p>
         <p className="text-sm block text-gray-300 font-semibold">
-          $ {parseFloat(item?.price) * qty}
+          &#8377; {parseFloat(item?.price) * qty}
         </p>
       </div>
 

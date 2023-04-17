@@ -19,7 +19,13 @@ const CartContainer = () => {
       cartShow: !cartShow,
     });
   };
-
+  const Message = () => {
+    dispatch({
+      type: actionType.SET_CARTITEMS,
+      cartItems: [],
+    });
+    alert("order successfuly!");
+  };
   useEffect(() => {
     let totalPrice = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
@@ -81,11 +87,11 @@ const CartContainer = () => {
           <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2">
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Sub Total</p>
-              <p className="text-gray-400 text-lg">$ {tot}</p>
+              <p className="text-gray-400 text-lg">&#8377; {tot}</p>
             </div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Delivery</p>
-              <p className="text-gray-400 text-lg">$ 2.5</p>
+              <p className="text-gray-400 text-lg">&#8377; 25</p>
             </div>
 
             <div className="w-full border-b border-gray-600 my-2"></div>
@@ -93,7 +99,7 @@ const CartContainer = () => {
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-200 text-xl font-semibold">Total</p>
               <p className="text-gray-200 text-xl font-semibold">
-                ${tot + 2.5}
+                &#8377;{tot + 25}
               </p>
             </div>
 
@@ -101,6 +107,7 @@ const CartContainer = () => {
               <motion.button
                 whileTap={{ scale: 0.8 }}
                 type="button"
+                onClick={Message}
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
               >
                 Check Out

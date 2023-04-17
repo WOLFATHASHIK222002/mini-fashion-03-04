@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import {
-  MdFastfood,
+  MdAssignment,
   MdCloudUpload,
   MdDelete,
-  MdFoodBank,
+  MdLocalOffer,
   MdAttachMoney,
 } from "react-icons/md";
+
 import { categories } from "../utils/data";
 import Loader from "./Loader";
 import {
@@ -25,6 +26,7 @@ const CreateContainer = () => {
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
+  const [totalamount, settotalamount] = useState("");
   const [category, setCategory] = useState(null);
   const [imageAsset, setImageAsset] = useState(null);
   const [fields, setFields] = useState(false);
@@ -88,7 +90,14 @@ const CreateContainer = () => {
   const saveDetails = () => {
     setIsLoading(true);
     try {
-      if (!title || !calories || !imageAsset || !price || !category) {
+      if (
+        !title ||
+        !calories ||
+        !imageAsset ||
+        !price ||
+        !category ||
+        !totalamount
+      ) {
         setFields(true);
         setMsg("Required fields can't be empty");
         setAlertStatus("danger");
@@ -105,6 +114,7 @@ const CreateContainer = () => {
           calories: calories,
           qty: 1,
           price: price,
+          totalamount: totalamount,
         };
         saveItem(data);
         setIsLoading(false);
@@ -135,6 +145,7 @@ const CreateContainer = () => {
     setImageAsset(null);
     setCalories("");
     setPrice("");
+    settotalamount("");
     setCategory("Select Category");
   };
 
@@ -166,7 +177,8 @@ const CreateContainer = () => {
         )}
 
         <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
-          <MdFastfood className="text-xl text-gray-700" />
+          <MdAssignment className="text-xl text-gray-700" />
+
           <input
             type="text"
             required
@@ -245,17 +257,29 @@ const CreateContainer = () => {
 
         <div className="w-full flex flex-col md:flex-row items-center gap-3">
           <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
-            <MdFoodBank className="text-gray-700 text-2xl" />
+            <MdLocalOffer className="text-gray-700 text-2xl" />
+
             <input
               type="text"
               required
               value={calories}
               onChange={(e) => setCalories(e.target.value)}
-              placeholder="Calories"
+              placeholder="OFFER %"
               className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
             />
           </div>
-
+          {/* total amount */}
+          <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
+            <MdAttachMoney className="text-gray-700 text-2xl" />
+            <input
+              type="text"
+              required
+              value={totalamount}
+              onChange={(e) => settotalamount(e.target.value)}
+              placeholder="Original price"
+              className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
+            />
+          </div>
           <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
             <MdAttachMoney className="text-gray-700 text-2xl" />
             <input
@@ -263,7 +287,7 @@ const CreateContainer = () => {
               required
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              placeholder="Price"
+              placeholder=" Offer Price"
               className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
             />
           </div>

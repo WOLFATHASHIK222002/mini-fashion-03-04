@@ -4,14 +4,20 @@ import { motion } from "framer-motion";
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../firebase.config";
-
-import Logo from "../img/logo.png";
+import "./Sample.css";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import Logo from "../img/loreal.png";
 import Avatar from "../img/avatar.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 
-const Header = () => {
+const Header = ({ ...props }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
@@ -56,10 +62,9 @@ const Header = () => {
       {/* desktop & tablet */}
       <div className="hidden md:flex w-full h-full items-center justify-between">
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={Logo} className="w-8 object-cover" alt="logo" />
-          <p className="text-headingColor text-xl font-bold"> City</p>
+          <img src={Logo} className="w-20 object-cover" alt="logo" />
+          <p className="text-headingColor text-xl font-bold"> Men-Fashion</p>
         </Link>
-
         <div className="flex items-center gap-8">
           <motion.ul
             initial={{ opacity: 0, x: 200 }}
@@ -67,18 +72,43 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-24 "
           >
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Home
-            </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Menu
-            </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              About Us
-            </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Service
-            </li>
+            <Link to={"/"}>
+              <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                Home
+              </li>
+            </Link>
+            <Link to={"/Menuitem"}>
+              <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                Menu
+              </li>
+            </Link>
+            <Link to={"/Service"}>
+              <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                About Us
+              </li>
+            </Link>
+            <Offcanvas show={show} onHide={handleClose} {...props}>
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title className="canvassearch">
+                  Search
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <input
+                  type="text"
+                  required
+                  className="searchengin"
+                  placeholder="Search the item"
+                />
+                <button className="searchpop">POP</button>
+              </Offcanvas.Body>
+            </Offcanvas>
+            <Button
+              onClick={handleShow}
+              className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer searchbutton"
+            >
+              Search
+            </Button>
           </motion.ul>
 
           <div
@@ -110,15 +140,25 @@ const Header = () => {
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
               >
-                {user && user.email === "20ucp3164@thenewcollege.edu.in" && (
-                  <Link to={"/createItem"}>
-                    <p
-                      className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
-                      onClick={() => setIsMenu(false)}
-                    >
-                      New Item <MdAdd />
-                    </p>
-                  </Link>
+                {user && user.email === "wolfathashik@gmail.com" && (
+                  <>
+                    <Link to={"/createItem"}>
+                      <p
+                        className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
+                        onClick={() => setIsMenu(false)}
+                      >
+                        New Item <MdAdd />
+                      </p>
+                    </Link>
+                    <Link to={"/Invoice"}>
+                      <p
+                        className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
+                        onClick={() => setIsMenu(false)}
+                      >
+                        Invoice Add <MdAdd />
+                      </p>
+                    </Link>
+                  </>
                 )}
 
                 <p
@@ -150,8 +190,8 @@ const Header = () => {
         </div>
 
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={Logo} className="w-8 object-cover" alt="logo" />
-          <p className="text-headingColor text-xl font-bold"> City</p>
+          <img src={Logo} className="w-20 object-cover" alt="logo" />
+          <p className="text-headingColor text-xl font-bold"> MEN-FASHION</p>
         </Link>
 
         <div className="relative">
@@ -169,12 +209,22 @@ const Header = () => {
               exit={{ opacity: 0, scale: 0.6 }}
               className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
             >
-              {user && user.email === "vetrivel.galaxy@gmail.com" && (
-                <Link to={"/createItem"}>
-                  <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base">
-                    New Item <MdAdd />
-                  </p>
-                </Link>
+              {user && user.email === "wolfathashik@gmail.com" && (
+                <>
+                  <Link to={"/createItem"}>
+                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base">
+                      New Item <MdAdd />
+                    </p>
+                  </Link>
+                  <Link to={"/Invoice"}>
+                    <p
+                      className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
+                      onClick={() => setIsMenu(false)}
+                    >
+                      Invoice Add <MdAdd />
+                    </p>
+                  </Link>
+                </>
               )}
 
               <ul className="flex flex-col ">
@@ -184,24 +234,39 @@ const Header = () => {
                 >
                   Home
                 </li>
-                <li
-                  className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
-                  onClick={() => setIsMenu(false)}
-                >
-                  Menu
-                </li>
+                <Link to={"/Menuitem"}>
+                  <li
+                    className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
+                    onClick={() => setIsMenu(false)}
+                  >
+                    Menu
+                  </li>
+                </Link>
                 <li
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setIsMenu(false)}
                 >
                   About Us
                 </li>
-                <li
-                  className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
-                  onClick={() => setIsMenu(false)}
+                <Offcanvas show={show} onHide={handleClose} {...props}>
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Search</Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <input
+                      type="text"
+                      required
+                      className="searchengin"
+                      placeholder="Search the item"
+                    />
+                  </Offcanvas.Body>
+                </Offcanvas>
+                <Button
+                  onClick={handleShow}
+                  className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer"
                 >
-                  Service
-                </li>
+                  Search
+                </Button>
               </ul>
 
               <p
@@ -217,5 +282,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;
